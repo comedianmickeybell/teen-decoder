@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Teen Decoder™</title>
+<meta name="description" content="A free 2-minute quiz for parents. Discover your teen's communication type — and the exact words that get them talking again.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F4EDE0;
+  --cream-deep:#EBDFC8;
+  --paper:#FBF7EF;
+  --ink:#1F1A14;
+  --ink-soft:#534A3F;
+  --ink-mute:#8A7E6E;
+  --clay:#C2553A;
+  --clay-deep:#A0432D;
+  --clay-soft:#F2D5C8;
+  --sage:#6F7C5E;
+  --sage-soft:#DDE4D4;
+  --line:#D9CDB4;
+  --line-soft:#E8E0CE;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Manrope',system-ui,sans-serif;
+  display:flex;justify-content:center;
+  padding:2rem 1rem;
+  min-height:100vh;
+  position:relative;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.3;
+  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .12 0 0 0 0 .10 0 0 0 0 .08 0 0 0 .18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.display{font-family:'Fraunces',Georgia,serif;font-variation-settings:"SOFT" 50,"opsz" 144;font-weight:400;letter-spacing:-.01em;line-height:1.05}
+.display em{font-style:italic;font-variation-settings:"SOFT" 100,"opsz" 144}
+
+/* ============ SHELL ============ */
+.shell{
+  background:var(--paper);
+  max-width:680px;width:100%;
+  border-radius:14px;
+  border:1px solid var(--line);
+  overflow:hidden;
+  position:relative;z-index:1;
+  box-shadow:0 24px 60px -30px rgba(31,26,20,.18);
+}
+
+/* ============ HEADER ============ */
+.hdr{
+  background:var(--cream-deep);
+  padding:1.6rem 1.75rem 1.4rem;
+  border-bottom:1px solid var(--line);
+}
+.hdr-eyebrow{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--clay-deep);font-weight:700;
+  display:inline-flex;align-items:center;gap:10px;
+  margin-bottom:.85rem;
+}
+.hdr-eyebrow::before{content:"";width:24px;height:1px;background:var(--clay)}
+.hdr-title{
+  font-family:'Fraunces',serif;
+  font-variation-settings:"SOFT" 50,"opsz" 144;
+  font-size:42px;font-weight:400;
+  color:var(--ink);
+  line-height:.95;letter-spacing:-.02em;
+  margin-bottom:.65rem;
+}
+.hdr-title em{font-style:italic;font-variation-settings:"SOFT" 100,"opsz" 144;color:var(--clay-deep)}
+.hdr-trade{font-size:14px;vertical-align:super;color:var(--ink-mute);font-style:normal}
+.hdr-badge{
+  display:inline-block;
+  background:transparent;
+  color:var(--ink-soft);
+  font-size:10px;font-weight:600;
+  padding:4px 0;letter-spacing:.18em;text-transform:uppercase;
+  border-top:1px solid var(--line);
+  padding-top:.85rem;margin-top:.5rem;
+}
+
+/* ============ BODY ============ */
+.body{padding:1.75rem}
+
+/* ============ INTRO ============ */
+.intro-quote{
+  background:var(--cream);
+  border-left:3px solid var(--clay);
+  padding:1.4rem 1.5rem;
+  margin-bottom:1.5rem;
+  border-radius:4px;
+}
+.iq-text{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-size:17px;
+  line-height:1.55;
+  color:var(--ink);
+  margin-bottom:.75rem;
+}
+.iq-text strong{font-style:normal;font-weight:600;color:var(--clay-deep);background:var(--clay-soft);padding:1px 6px;border-radius:3px}
+.iq-attr{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-mute);font-weight:600;
+  display:flex;align-items:center;gap:8px;
+}
+.iq-attr::before{content:"";width:18px;height:1px;background:var(--ink-mute)}
+
+.intro-explain{
+  margin-bottom:1.25rem;
+}
+.intro-explain-h{
+  font-family:'Fraunces',serif;
+  font-size:24px;font-weight:500;
+  color:var(--ink);
+  line-height:1.2;letter-spacing:-.01em;
+  margin-bottom:1rem;
+}
+.intro-explain-p{
+  font-size:15px;color:var(--ink-soft);
+  line-height:1.7;margin-bottom:1rem;
+}
+.intro-explain-p:last-child{margin-bottom:0}
+.intro-explain-p strong{color:var(--ink);font-weight:600}
+
+.phase-row{
+  display:flex;gap:8px;margin:1.5rem 0;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:4px;
+  background:var(--cream);
+}
+.phase-step{
+  flex:1;border-radius:7px;padding:.85rem .65rem;text-align:center;
+  background:transparent;
+}
+.phase-step.active{background:var(--paper);box-shadow:0 1px 2px rgba(31,26,20,.06)}
+.phase-num{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:22px;font-weight:500;
+  color:var(--clay);line-height:1;
+  margin-bottom:.35rem;
+}
+.phase-step:not(.active) .phase-num{color:var(--ink-mute)}
+.phase-label{font-size:12px;font-weight:600;color:var(--ink);line-height:1.3}
+.phase-step:not(.active) .phase-label{color:var(--ink-mute)}
+.phase-sub{font-size:10.5px;color:var(--ink-mute);margin-top:3px;line-height:1.3;font-style:italic}
+
+.intro-callout{
+  background:var(--sage-soft);
+  border-left:3px solid var(--sage);
+  border-radius:4px;
+  padding:.95rem 1.15rem;
+  font-size:13.5px;color:var(--ink-soft);line-height:1.6;
+  margin-top:1.25rem;
+}
+
+.intro-start-card{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:1.6rem 1.5rem;
+  margin:1.5rem 0 1.25rem;
+  text-align:center;
+}
+.intro-start-h{
+  font-family:'Fraunces',serif;
+  font-size:22px;font-weight:500;
+  color:var(--ink);
+  margin-bottom:.5rem;line-height:1.25;letter-spacing:-.01em;
+}
+.intro-start-h em{font-style:italic;color:var(--clay-deep)}
+.intro-start-p{font-size:14px;color:var(--ink-soft);line-height:1.55;margin-bottom:1.2rem;max-width:42ch;margin-left:auto;margin-right:auto}
+
+.type-pills{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:1.5rem}
+.tpill{
+  font-size:11.5px;font-weight:600;
+  padding:5px 13px;border-radius:20px;
+  letter-spacing:.01em;
+  border:1px solid;
+}
+
+.btn-start{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--ink);color:var(--cream);
+  border:none;
+  border-radius:999px;
+  padding:15px 32px;
+  font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  font-family:'Manrope',sans-serif;cursor:pointer;
+  transition:all .2s ease;
+  box-shadow:0 8px 22px -10px rgba(31,26,20,.45);
+}
+.btn-start:hover{background:var(--clay-deep);transform:translateY(-2px)}
+
+.how-row{display:flex;gap:8px;margin:1.5rem 0 1.25rem}
+.how-step{
+  flex:1;
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:.95rem .75rem;
+  text-align:center;
+}
+.how-num{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:30px;font-weight:500;
+  color:var(--clay);line-height:1;margin-bottom:.3rem;
+}
+.how-label{font-size:11.5px;color:var(--ink-soft);line-height:1.4}
+
+.intro-fine{font-size:11px;color:var(--ink-mute);text-align:center;line-height:1.6;font-style:italic}
+
+/* ============ PROGRESS ============ */
+.prog-row{display:flex;align-items:center;gap:14px;margin-bottom:1.5rem}
+.prog-wrap{flex:1;background:var(--line-soft);border-radius:20px;height:3px;overflow:hidden}
+.prog-fill{height:100%;border-radius:20px;background:var(--clay);transition:width .5s cubic-bezier(.4,0,.2,1)}
+.prog-label{font-size:11px;color:var(--ink-mute);font-weight:600;letter-spacing:.08em;white-space:nowrap}
+
+/* ============ QUESTION CARD ============ */
+.qcard{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:1.75rem;
+  margin-bottom:1rem;
+}
+.qnum{
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--clay-deep);font-weight:700;margin-bottom:.85rem;
+}
+.qtext{
+  font-family:'Fraunces',serif;
+  font-size:21px;font-weight:500;
+  color:var(--ink);
+  line-height:1.3;letter-spacing:-.01em;
+  margin-bottom:1.4rem;
+}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  display:flex;align-items:flex-start;gap:13px;
+  padding:14px 16px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:var(--cream);
+  cursor:pointer;
+  font-size:14px;color:var(--ink);
+  text-align:left;
+  font-family:'Manrope',sans-serif;
+  width:100%;line-height:1.5;
+  transition:all .18s ease;
+}
+.opt:hover{border-color:var(--clay);background:var(--clay-soft)}
+.opt.sel{border-color:var(--clay);background:var(--clay-soft)}
+.dot{
+  width:16px;height:16px;border-radius:50%;
+  border:1.5px solid var(--ink-mute);
+  flex-shrink:0;margin-top:2px;
+  background:var(--paper);
+  position:relative;
+  transition:all .2s ease;
+}
+.opt.sel .dot{background:var(--clay);border-color:var(--clay)}
+.opt.sel .dot::after{
+  content:"";position:absolute;top:3px;left:3px;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--paper);
+}
+
+.nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:1.25rem}
+.btn-next{
+  background:var(--ink);color:var(--cream);
+  border:none;border-radius:999px;
+  padding:13px 28px;
+  font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  font-family:'Manrope',sans-serif;cursor:pointer;
+  transition:all .2s ease;
+  min-width:160px;
+  box-shadow:0 6px 18px -8px rgba(31,26,20,.4);
+}
+.btn-next:hover{background:var(--clay-deep);transform:translateY(-1px)}
+.btn-next:disabled{background:var(--ink-mute);cursor:not-allowed;transform:none;box-shadow:none;opacity:.6}
+.btn-back{
+  background:transparent;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:12px 18px;
+  font-size:12px;font-weight:600;letter-spacing:.04em;
+  color:var(--ink-soft);cursor:pointer;
+  font-family:'Manrope',sans-serif;
+  transition:all .2s ease;
+}
+.btn-back:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ============ RESULTS ============ */
+.results-eyebrow{
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--clay-deep);font-weight:700;margin-bottom:.5rem;
+}
+.results-title{
+  font-family:'Fraunces',serif;
+  font-size:30px;font-weight:500;
+  color:var(--ink);line-height:1.1;letter-spacing:-.015em;
+  margin-bottom:.5rem;
+}
+.results-title em{font-style:italic;color:var(--clay-deep)}
+.results-sub{font-size:14px;color:var(--ink-soft);line-height:1.55;margin-bottom:1.25rem;max-width:48ch}
+
+.warn-box{
+  background:#FBF0DC;
+  border-left:3px solid #C8913A;
+  border-radius:4px;
+  padding:.95rem 1.2rem;
+  font-size:13px;color:#7a5020;line-height:1.6;
+  margin-bottom:1.25rem;
+}
+.warn-box strong{color:#5a3500;font-weight:700}
+
+.primary-hero{
+  border-radius:14px;
+  padding:1.75rem;
+  margin-bottom:1.25rem;
+  position:relative;overflow:hidden;
+  border:1px solid;
+}
+.ph-eyebrow{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;margin-bottom:.55rem}
+.ph-name{
+  font-family:'Fraunces',serif;
+  font-size:32px;font-weight:500;
+  line-height:1.05;letter-spacing:-.015em;
+  margin-bottom:.55rem;
+}
+.ph-hook{
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-size:15px;
+  margin-bottom:1.1rem;
+  line-height:1.5;
+  opacity:.85;
+}
+.ph-body{font-size:14px;line-height:1.7;opacity:.92}
+
+.need-pill-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.5rem}
+.need-pill{
+  background:var(--ink);color:var(--cream);
+  font-size:11.5px;font-weight:500;
+  padding:6px 14px;border-radius:20px;
+  letter-spacing:.01em;
+}
+
+.section-eyebrow{
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--clay-deep);font-weight:700;
+  margin:1.5rem 0 .8rem;
+  display:flex;align-items:center;gap:10px;
+}
+.section-eyebrow::before{content:"";width:24px;height:1px;background:var(--clay)}
+
+.score-card{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:1rem 1.2rem;
+  margin-bottom:.6rem;
+}
+.score-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.score-name{font-size:13.5px;font-weight:600;color:var(--ink)}
+.score-pct{font-family:'Fraunces',serif;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.score-track{background:var(--line-soft);border-radius:20px;height:5px;overflow:hidden}
+.score-fill{height:100%;border-radius:20px;transition:width .8s ease}
+
+.icard{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:1.25rem 1.4rem;
+  margin-bottom:.85rem;
+}
+.icard-text{font-size:14px;color:var(--ink);line-height:1.7}
+.list-item{
+  padding:9px 0;
+  border-bottom:1px dashed var(--line);
+  font-size:14px;color:var(--ink);line-height:1.5;
+  font-family:'Fraunces',serif;font-style:italic;
+}
+.list-item:last-child{border-bottom:none}
+
+/* ============ "FULL REPORT INCLUDES" BOX ============ */
+.beginning-box{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:14px;
+  margin:1.5rem 0 1.25rem;
+  overflow:hidden;
+}
+.beginning-header{
+  padding:1.4rem 1.6rem 1.1rem;
+  border-bottom:1px solid var(--line);
+}
+.beginning-eyebrow{
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--clay-deep);font-weight:700;margin-bottom:.6rem;
+}
+.beginning-title{
+  font-family:'Fraunces',serif;
+  font-size:21px;font-weight:500;
+  color:var(--ink);line-height:1.25;letter-spacing:-.01em;
+}
+.beginning-title em{font-style:italic;color:var(--clay-deep)}
+.beginning-body{padding:1.25rem 1.6rem}
+.wi-row{
+  display:flex;align-items:flex-start;gap:11px;
+  font-size:14px;color:var(--ink);line-height:1.55;
+  margin-bottom:9px;
+}
+.wi-row:last-child{margin-bottom:0}
+.wi-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--clay);
+  flex-shrink:0;margin-top:8px;
+}
+
+/* ============ NEXT STEP CTA (NEW — direct to SamCart) ============ */
+.next-step{
+  background:var(--ink);
+  color:var(--cream);
+  border-radius:14px;
+  padding:1.85rem 1.75rem;
+  margin:1.5rem 0 1.25rem;
+  position:relative;overflow:hidden;
+  border-top:3px solid var(--clay);
+}
+.next-step::after{
+  content:"";position:absolute;top:-80px;right:-80px;
+  width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,var(--clay) 0%,transparent 70%);
+  opacity:.18;pointer-events:none;
+}
+.next-step-eyebrow{
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:700;color:var(--clay-soft);
+  margin-bottom:.85rem;
+  display:inline-flex;align-items:center;gap:10px;
+  position:relative;z-index:2;
+}
+.next-step-eyebrow::before{content:"";width:24px;height:1px;background:var(--clay-soft)}
+.next-step-h{
+  font-family:'Fraunces',serif;
+  font-size:26px;font-weight:500;
+  line-height:1.15;letter-spacing:-.015em;
+  color:var(--cream);margin-bottom:.85rem;
+  position:relative;z-index:2;
+}
+.next-step-h em{font-style:italic;color:var(--clay-soft)}
+.next-step-lede{
+  font-size:14px;line-height:1.7;
+  color:rgba(244,237,224,.8);
+  margin-bottom:1.25rem;
+  position:relative;z-index:2;
+}
+.next-step-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.4rem;position:relative;z-index:2}
+.next-step-pill{
+  background:rgba(244,237,224,.06);
+  border:1px solid rgba(244,237,224,.18);
+  padding:6px 13px;border-radius:20px;
+  font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(244,237,224,.85);
+  display:inline-flex;align-items:center;gap:7px;
+}
+.next-step-pill strong{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:14px;font-weight:600;color:var(--clay-soft);
+  letter-spacing:0;text-transform:none;
+}
+.next-step-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--clay);color:var(--cream);
+  border-radius:999px;
+  padding:16px 28px;
+  font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  text-decoration:none;
+  position:relative;z-index:2;
+  transition:all .2s ease;
+  box-shadow:0 10px 26px -10px rgba(194,85,58,.6);
+}
+.next-step-btn:hover{background:var(--clay-deep);transform:translateY(-2px)}
+.next-step-btn .arrow{transition:transform .2s ease}
+.next-step-btn:hover .arrow{transform:translateX(4px)}
+.next-step-sub{
+  font-size:12px;color:rgba(244,237,224,.6);
+  text-align:center;margin-top:.85rem;font-style:italic;
+  position:relative;z-index:2;
+}
+
+.or-divider{
+  display:flex;align-items:center;gap:14px;
+  margin:1.5rem 0;
+}
+.or-divider::before,.or-divider::after{
+  content:"";flex:1;height:1px;background:var(--line);
+}
+.or-divider span{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-mute);font-weight:600;
+}
+
+/* ============ EMAIL CAPTURE (secondary path) ============ */
+.capture-card{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:1.6rem 1.6rem;
+  margin-bottom:1rem;
+}
+.cap-eyebrow{
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink-mute);font-weight:700;margin-bottom:.5rem;
+}
+.cap-title{
+  font-family:'Fraunces',serif;
+  font-size:20px;font-weight:500;
+  color:var(--ink);line-height:1.25;letter-spacing:-.01em;
+  margin-bottom:.4rem;
+}
+.cap-title em{font-style:italic;color:var(--clay-deep)}
+.cap-sub{font-size:13px;color:var(--ink-soft);line-height:1.6;margin-bottom:1.1rem}
+.field-wrap{margin-bottom:10px}
+.field-label{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft);font-weight:700;
+  margin-bottom:6px;display:block;
+}
+.field-wrap input{
+  width:100%;padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  font-size:14px;color:var(--ink);
+  background:var(--paper);
+  font-family:'Manrope',sans-serif;
+  transition:all .2s ease;
+}
+.field-wrap input:focus{outline:none;border-color:var(--clay);background:#fff}
+.btn-submit{
+  display:block;width:100%;
+  background:var(--ink);color:var(--cream);
+  border:none;border-radius:999px;
+  padding:14px;
+  font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  font-family:'Manrope',sans-serif;cursor:pointer;
+  transition:all .2s ease;
+  margin-top:6px;
+}
+.btn-submit:hover{background:var(--clay-deep)}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed}
+.privacy-note{font-size:11px;color:var(--ink-mute);text-align:center;margin-top:.85rem;line-height:1.55;font-style:italic}
+.err{font-size:12px;color:#9B2020;margin-top:6px}
+
+/* ============ RESTART / FOOTER ============ */
+.restart-btn{
+  display:block;width:100%;text-align:center;
+  padding:12px;border:none;background:transparent;
+  font-size:13px;color:var(--ink-mute);
+  font-family:'Manrope',sans-serif;cursor:pointer;
+  transition:color .2s ease;
+}
+.restart-btn:hover{color:var(--clay-deep)}
+.footer-note{
+  font-size:11px;color:var(--ink-mute);
+  text-align:center;line-height:1.7;
+  margin-top:.5rem;font-style:italic;
+  border-top:1px solid var(--line);padding-top:1rem;
+}
+
+/* ============ LOADING ============ */
+.loading-wrap{display:flex;flex-direction:column;align-items:center;padding:4rem 0;gap:1rem}
+.spinner{
+  width:32px;height:32px;
+  border:2px solid var(--line);
+  border-top-color:var(--clay);
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:14px;color:var(--ink-soft);font-style:italic;font-family:'Fraunces',serif}
+
+/* ============ CONFIRMATION SCREEN ============ */
+.success-check{
+  width:54px;height:54px;border-radius:50%;
+  background:var(--sage-soft);
+  border:2px solid var(--sage);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto .85rem;
+}
+.confirm-warn{
+  background:#FBF0DC;
+  border-left:3px solid #C8913A;
+  border-radius:4px;
+  padding:1rem 1.2rem;
+  margin:1.25rem 0;
+}
+.confirm-warn-eyebrow{
+  font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:#C8913A;font-weight:700;margin-bottom:.45rem;
+}
+.confirm-warn-text{font-size:13.5px;color:#6B4400;line-height:1.6}
+.confirm-warn-text strong{font-weight:700}
+
+.confirm-pivot{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:1.6rem 1.75rem;
+  margin-bottom:1.25rem;
+}
+.confirm-pivot-eyebrow{
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--clay-deep);font-weight:700;margin-bottom:.7rem;
+}
+.confirm-pivot-h{
+  font-family:'Fraunces',serif;
+  font-size:24px;font-weight:500;
+  color:var(--ink);line-height:1.2;letter-spacing:-.01em;
+  margin-bottom:1rem;
+}
+.confirm-pivot-h em{font-style:italic;color:var(--clay-deep)}
+.confirm-pull{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:16px;line-height:1.55;color:var(--ink);
+  background:var(--cream);
+  border-left:3px solid var(--clay);
+  padding:1rem 1.25rem;
+  border-radius:4px;margin-bottom:1rem;
+}
+.confirm-pivot p{font-size:14px;color:var(--ink-soft);line-height:1.7;margin-bottom:.85rem}
+.confirm-pivot p:last-child{margin-bottom:0}
+.confirm-pivot p strong{color:var(--ink);font-weight:600}
+
+.upsell-wrap{
+  background:var(--ink);
+  color:var(--cream);
+  border-radius:14px;
+  padding:1.85rem 1.75rem;
+  margin-bottom:1.25rem;
+  position:relative;overflow:hidden;
+  border-top:3px solid var(--clay);
+}
+.upsell-wrap::after{
+  content:"";position:absolute;top:-80px;right:-80px;
+  width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,var(--clay) 0%,transparent 70%);
+  opacity:.18;pointer-events:none;
+}
+.upsell-flag{
+  display:inline-block;
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:700;color:var(--clay-soft);
+  background:rgba(242,213,200,.08);
+  border:1px solid rgba(242,213,200,.25);
+  padding:6px 13px;border-radius:20px;
+  margin-bottom:1rem;
+  position:relative;z-index:2;
+}
+.upsell-h{
+  font-family:'Fraunces',serif;
+  font-size:26px;font-weight:500;
+  color:var(--cream);
+  line-height:1.15;letter-spacing:-.015em;
+  margin-bottom:.85rem;
+  position:relative;z-index:2;
+}
+.upsell-h em{font-style:italic;color:var(--clay-soft)}
+.upsell-lede{
+  font-size:14px;line-height:1.7;
+  color:rgba(244,237,224,.8);
+  margin-bottom:1.2rem;
+  position:relative;z-index:2;
+}
+.upsell-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.4rem;position:relative;z-index:2}
+.upsell-pill{
+  background:rgba(244,237,224,.06);
+  border:1px solid rgba(244,237,224,.18);
+  padding:6px 13px;border-radius:20px;
+  font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(244,237,224,.85);
+  display:inline-flex;align-items:center;gap:7px;
+}
+.upsell-pill strong{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:14px;font-weight:600;color:var(--clay-soft);
+  letter-spacing:0;text-transform:none;
+}
+.upsell-urgency{
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:700;color:var(--clay-soft);
+  text-align:center;margin-bottom:.85rem;
+  position:relative;z-index:2;
+}
+.upsell-urgency .pulse{
+  display:inline-block;width:6px;height:6px;
+  background:var(--clay-soft);border-radius:50%;
+  margin-right:8px;vertical-align:middle;
+  box-shadow:0 0 0 0 rgba(242,213,200,.7);
+  animation:pulse-anim 2s infinite;
+}
+@keyframes pulse-anim{
+  0%{box-shadow:0 0 0 0 rgba(242,213,200,.7)}
+  70%{box-shadow:0 0 0 10px rgba(242,213,200,0)}
+  100%{box-shadow:0 0 0 0 rgba(242,213,200,0)}
+}
+.upsell-cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--clay);color:var(--cream);
+  border-radius:999px;
+  padding:16px 28px;
+  font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  text-decoration:none;
+  position:relative;z-index:2;
+  transition:all .2s ease;
+  box-shadow:0 10px 26px -10px rgba(194,85,58,.6);
+}
+.upsell-cta:hover{background:var(--clay-deep);transform:translateY(-2px)}
+.upsell-cta-sub{
+  font-size:12px;color:rgba(244,237,224,.6);
+  text-align:center;margin-top:.85rem;font-style:italic;
+  position:relative;z-index:2;
+}
+.upsell-cta-sub strong{color:var(--clay-soft);font-weight:600}
+
+.signature-quote{
+  background:var(--cream);
+  border-left:3px solid var(--clay);
+  border-radius:4px;
+  padding:1rem 1.25rem;
+  margin-bottom:1.25rem;
+}
+.signature-quote-text{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:14px;color:var(--ink);line-height:1.6;
+}
+.signature-quote-attr{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-mute);font-weight:600;margin-top:.65rem;
+}
+
+/* ============ MOBILE TWEAKS ============ */
+@media (max-width:520px){
+  body{padding:1rem .65rem}
+  .body{padding:1.4rem 1.25rem}
+  .hdr{padding:1.4rem 1.4rem 1.2rem}
+  .hdr-title{font-size:36px}
+  .qcard{padding:1.4rem 1.25rem}
+  .qtext{font-size:19px}
+  .ph-name{font-size:28px}
+  .results-title{font-size:26px}
+  .next-step,.upsell-wrap{padding:1.5rem 1.4rem}
+  .next-step-h,.upsell-h,.confirm-pivot-h{font-size:22px}
+  .phase-row{flex-direction:column;gap:4px}
+  .how-row{flex-wrap:wrap}
+  .how-step{min-width:calc(33% - 6px)}
+}
+</style>
+</head>
+<body>
+<div class="shell" id="app">
+  <div class="hdr">
+    <div class="hdr-eyebrow">The 10-Minute Conversation Method</div>
+    <div class="hdr-title">The Teen<br><em>Decoder</em><span class="hdr-trade">™</span></div>
+    <div class="hdr-badge">Free Intelligence Report · 2 Min</div>
+  </div>
+  <div class="body" id="screen"></div>
+</div>
+
+<script>
+/* ====================================================
+   CONSTANTS — edit URLs/tags here
+   ==================================================== */
+const SAMCART_URL_RESULTS='https://themickeybell.samcart.com/products/teens?utm_source=teen-decoder&utm_medium=results-page&utm_campaign=direct-cta';
+const SAMCART_URL_CONFIRM='https://themickeybell.samcart.com/products/teens?utm_source=teen-decoder&utm_medium=confirmation&utm_campaign=quiz-thankyou';
+const WORKER_URL='https://mickeybell-decoder.comedianmickeybell.workers.dev';
+
+/* ====================================================
+   QUESTIONS — UNCHANGED
+   ==================================================== */
+const Q=[
+  {text:"When something is clearly bothering your teen, what do they usually do?",opts:[
+    {l:"Go completely quiet — retreat, avoid eye contact, nod instead of engaging",t:{shut:3,avoid:1}},
+    {l:"Snap, raise their voice, get defensive or storm off — then cool down later",t:{react:3,shut:1}},
+    {l:"Change the subject, grab their phone, laugh it off, find a reason to leave",t:{avoid:3,perf:1}},
+    {l:"Act confident and positive — say they're fine, even when they clearly aren't",t:{perf:3,avoid:1}}
+  ]},
+  {text:"When you try to start a real conversation, which sounds most like your teen?",opts:[
+    {l:"'I don't know.' / 'Nothing.' / 'I'm fine.' — minimal, flat, closed off",t:{shut:3,avoid:1}},
+    {l:"'You don't get it!' / 'Why are you always on me?!' — escalates fast",t:{react:3,perf:1}},
+    {l:"'I'm good.' / 'Can we not do this right now?' — deflects and exits",t:{avoid:3,shut:1}},
+    {l:"'I got it.' / 'It's not that serious.' — breezy, keeps it light, moves on",t:{perf:3,react:1}}
+  ]},
+  {text:"What is your teen probably feeling inside — but would never say out loud?",opts:[
+    {l:"'This feels too big to put into words. I might mess it up if I try.'",t:{shut:3,avoid:1}},
+    {l:"'I feel attacked and misunderstood. Everything feels bigger than it should.'",t:{react:3,shut:1}},
+    {l:"'This is awkward. I don't even know what I feel. Let's keep this light.'",t:{avoid:3,perf:1}},
+    {l:"'I don't want to burden anyone. People expect me to be okay.'",t:{perf:3,avoid:1}}
+  ]},
+  {text:"Which belief is your teen most likely carrying — even if they'd never admit it?",opts:[
+    {l:"'It's better to say nothing than say something stupid or wrong.'",t:{shut:3,perf:1}},
+    {l:"'Nobody listens to me unless I get loud. I'm always the problem.'",t:{react:3,shut:1}},
+    {l:"'If I ignore it, it'll go away. Talking about it makes it worse.'",t:{avoid:3,react:1}},
+    {l:"'I have to keep it together. My value is in how I perform.'",t:{perf:3,avoid:1}}
+  ]},
+  {text:"When your teen is under pressure — school, relationships, life — what does it look like?",opts:[
+    {l:"They go silent and withdraw. You have to guess what's happening inside.",t:{shut:3,avoid:1}},
+    {l:"The pressure leaks sideways — they explode over something small.",t:{react:3,shut:1}},
+    {l:"They stay distracted and surface-level. Busy, but not really present.",t:{avoid:3,perf:1}},
+    {l:"They push harder and act fine — but you can sense the tension underneath.",t:{perf:3,avoid:1}}
+  ]},
+  {text:"Which of these concerns you most about your teen right now?",opts:[
+    {l:"That they're drowning in silence and I can't reach them",t:{shut:3,avoid:1}},
+    {l:"That the anger and intensity is going to damage our relationship",t:{react:3,shut:1},w:true},
+    {l:"That they're avoiding everything and drifting further away",t:{avoid:3,react:1},w:true},
+    {l:"That they're holding it together on the outside — but quietly falling apart inside",t:{perf:3,avoid:1},w:true}
+  ]}
+];
+
+/* ====================================================
+   TYPES — refined color palette (warm editorial)
+   ==================================================== */
+const TYPES={
+  shut:{ name:"The Shut Downer",
+         color:"#3D5871", bg:"#E5EDF4", border:"#A8C2D8",
+         scoreColor:"#5478A0", gradA:"#7A9CB8", gradB:"#5478A0" },
+  react:{ name:"The Reactor",
+         color:"#8A3F2A", bg:"#F7E4DA", border:"#E8B5A1",
+         scoreColor:"#C2553A", gradA:"#C2553A", gradB:"#A0432D" },
+  avoid:{ name:"The Avoider",
+         color:"#5A5371", bg:"#EDE9F4", border:"#C2BAD3",
+         scoreColor:"#7B7196", gradA:"#8B85A8", gradB:"#6B6488" },
+  perf:{ name:"The Performer",
+         color:"#7A5825", bg:"#F4E8D0", border:"#D9BC8C",
+         scoreColor:"#A07A3B", gradA:"#B5894A", gradB:"#947033" }
+};
+
+/* ====================================================
+   INSIGHTS — UNCHANGED COPY
+   ==================================================== */
+const INS={
+  shut:{hook:'"If I don\'t say anything… I can\'t say the wrong thing."',tagline:"Silence is their protection — not their answer.",needs:["Low-pressure conversations","Time to process","Safety over intensity"],whoTheyAre:"This teen isn\'t trying to be difficult — they\'re overwhelmed. When emotions rise, their brain hits the brakes. Silence feels safer than saying something they might regret, get judged for, or not know how to explain.",reality:"Their brain is overloaded. Emotion plus pressure equals shutdown. It\'s not rebellion — it\'s protection. Silence is their coping mechanism, not a wall they\'re building against you.",feelings:["'I don\'t know how to explain what\'s going on inside me.'","'If I open up, I might mess it up.'","'This feels too big to put into words.'","'I just need space to figure it out.'"],lies:["'What I feel doesn\'t make sense.'","'If I say it wrong, I\'ll disappoint them.'","'It\'s better to say nothing than say it wrong.'","'No one will really understand anyway.'"],sayYes:["'You don\'t have to talk right now — I\'m here when you\'re ready.'","'I\'ve noticed you seem off. Just wanted you to know I care.'","'We don\'t have to figure it all out tonight.'","'I\'m not here to fix it — I just want to understand you.'"],sayNo:["'Why won\'t you talk to me?'","'You need to tell me what\'s going on right now.'","'This is ridiculous.'","'If you don\'t talk, I can\'t help you.'"],sayTip:"Pressure makes them shut down faster. Safety opens them up.",nextStep:"Now that you know your teen shuts down, step two is Mickey Bell\'s Observe → Validate → Invite method — a 3-step approach built specifically for teens who won\'t talk. That\'s exactly what Tool #2 teaches.",stat:{n:"1 in 3",l:"teens say they stay silent because they fear disappointing the people they love most"}},
+  react:{hook:'"If I feel it… you\'re going to hear it."',tagline:"The anger is the symptom. The hurt underneath it is the real story.",needs:["Calm from you first","Validation before correction","Space to regulate"],whoTheyAre:"This teen feels everything deeply — and fast. Their emotions hit like a wave before they have time to process them. What looks like attitude is often unmanaged intensity — not disrespect.",reality:"They don\'t lack emotion — they lack regulation. Their reaction is faster than their ability to process. It\'s not defiance — it\'s overflow. And they need someone to stay calm when they can\'t.",feelings:["'I feel attacked right now.'","'I don\'t know how to calm this down.'","'I feel completely misunderstood.'","'Everything feels bigger than it should.'"],lies:["'I\'m always in trouble.'","'Nobody listens to me unless I get loud.'","'I\'m the problem.'","'They\'re against me.'"],sayYes:["'I can see you\'re frustrated — let\'s slow this down.'","'I\'m not against you. I\'m trying to understand you.'","'Let\'s take a minute and come back to this.'","'Your feelings matter. Let\'s figure this out together.'"],sayNo:["'Calm down!'","'You\'re overreacting.'","'Watch your attitude.'","'You\'re being disrespectful.' (mid-explosion)"],sayTip:"Match their intensity = escalation. Lower your tone = lowers the temperature.",nextStep:"Reactive teens need a very specific sequence — de-escalate first, connect second. Tool #2 walks you through Mickey Bell\'s exact method for reaching your teen before and after the next explosion.",stat:{n:"76%",l:"of teens who display anger say they wished someone had asked what was really wrong instead of reacting to the outburst"}},
+  avoid:{hook:'"If we don\'t go there… I don\'t have to deal with it."',tagline:"They\'re not disconnected — they\'re uncomfortable.",needs:["Short casual conversations","Side-by-side activities","Less big talk, more small moments"],whoTheyAre:"This teen avoids discomfort at all costs. Deep conversations feel awkward, heavy, or unnecessary. So they stay busy, distracted, or disengaged — not because they don\'t care, but because they don\'t know how to engage.",reality:"Avoidance is their protection strategy. They\'re not disconnected — they\'re uncomfortable. Distraction keeps them from facing what feels messy or unclear inside.",feelings:["'This feels awkward and I don\'t want to be here.'","'I don\'t even know what I feel.'","'I don\'t want to get into this right now.'","'Let\'s just keep this light.'"],lies:["'If I ignore it, it\'ll go away.'","'Talking about it will make it worse.'","'This isn\'t worth getting into.'","'I don\'t need to deal with this.'"],sayYes:["'Hey — quick question. What\'s been the best part of your week?'","'On a scale of 1–10, how stressful is life right now?'","'We don\'t have to make this a big deal — just checking in.'","'Let\'s just talk for a minute.'"],sayNo:["'We need to have a serious talk.'","'Put your phone down — we\'re talking.'","'Why do you always avoid me?'","'Sit down — I\'m not done.'"],sayTip:"Big talks scare them. Small moments reach them.",nextStep:"Avoider teens respond to a completely different approach than most parents use. Tool #2 gives you Mickey Bell\'s exact casual entry points — the moments, settings, and words that get an Avoider to actually open up.",stat:{n:"68%",l:"of teens say they avoid conversations not because they don\'t want to connect — but because they don\'t know how to start"}},
+  perf:{hook:'"As long as I look okay… nobody needs to know I\'m not."',tagline:"Nobody checks on the kid who seems fine. That\'s exactly who needs checking on.",needs:["Permission to not be okay","Deeper follow-up questions","Safe space to drop the mask"],whoTheyAre:"This teen looks like they have it all together — social, funny, or high-achieving. But underneath, they\'re hiding what they\'re really feeling. They\'ve learned to protect themselves with image.",reality:"They don\'t lack depth — they hide it. Strength has become a mask. They\'ve tied their worth to their performance and learned that being okay is something you earn, not something you\'re given.",feelings:["'I don\'t want to burden anyone.'","'If I\'m honest, things might fall apart.'","'People expect me to be okay.'","'I don\'t know how to let my guard down.'"],lies:["'I have to keep it together.'","'If people see the real me, they\'ll be disappointed.'","'My value is in how I perform.'","'I can handle this on my own.'"],sayYes:["'You don\'t always have to be \\'on\\' with me.'","'You take care of everyone else — who\'s checking on you?'","'It\'s okay if things aren\'t okay.'","'I care more about YOU than how you\'re doing.'"],sayNo:["'You\'re fine — you always are.'","'You\'ve got nothing to worry about.'","'Other kids have it worse.'","'You\'re strong — you\'ll be okay.'"],sayTip:"Praise the person — not just the performance. Give permission for honesty.",nextStep:"Performer teens are the hardest to spot and the most likely to be missed. Tool #2 gives you Mickey Bell\'s word-for-word approach for getting past the performance and reaching the real teenager underneath.",stat:{n:"45%",l:"of high-achieving teens report feeling chronically overwhelmed while appearing completely fine to every adult around them"}}
+};
+
+/* ====================================================
+   STATE + RENDERING
+   ==================================================== */
+let cq=0,ans=[],scores={shut:0,react:0,avoid:0,perf:0},warned=false,pkey='';
+const SC=document.getElementById('screen');
+function R(h){SC.innerHTML=h;window.scrollTo({top:0,behavior:'smooth'})}
+
+function quoteBlock(){
+  return `<div class="intro-quote">
+    <div class="iq-text">Your teen isn't <strong>shutting you out</strong>… they're protecting something they don't know how to explain.</div>
+    <div class="iq-attr">Mickey Bell</div>
+  </div>`;
+}
+
+function showIntro(){
+  R(`${quoteBlock()}
+  <div class="intro-explain">
+    <div class="intro-explain-h">Before your teen can open up — you need to decode who you're talking to.</div>
+    <p class="intro-explain-p">Most parents try to have the same conversation with every teenager. They sit them down, ask what's wrong, push for answers — and wonder why the wall goes up every time. The truth is, <strong>every teen communicates differently</strong>. And if you don't know your teen's communication type, you're guessing. And guessing usually makes things worse.</p>
+    <p class="intro-explain-p">The Teen Decoder™ is the <strong>first step</strong> in Mickey Bell's 10-Minute Conversation Method. It identifies exactly how your teen is wired — what they're protecting, why they shut down or lash out, and what they actually need from you to feel safe enough to talk.</p>
+    <div class="phase-row">
+      <div class="phase-step active">
+        <div class="phase-num">01</div>
+        <div class="phase-label">Know Your Teen</div>
+        <div class="phase-sub">Decoder — you are here</div>
+      </div>
+      <div class="phase-step">
+        <div class="phase-num">02</div>
+        <div class="phase-label">Learn How to Talk</div>
+        <div class="phase-sub">The Method — coming next</div>
+      </div>
+      <div class="phase-step">
+        <div class="phase-num">03</div>
+        <div class="phase-label">Open the Door</div>
+        <div class="phase-sub">Real conversations</div>
+      </div>
+    </div>
+    <div class="intro-callout">This takes 2 minutes. What you learn will change how every conversation with your teen starts from this point forward.</div>
+  </div>
+  <div class="intro-start-card">
+    <div class="intro-start-h">Ready to <em>decode your teen?</em></div>
+    <p class="intro-start-p">Answer 6 questions. Get a personalized intelligence report on your teen — free.</p>
+    <div class="type-pills">
+      <span class="tpill" style="background:#E5EDF4;color:#3D5871;border-color:#A8C2D8">The Shut Downer</span>
+      <span class="tpill" style="background:#F7E4DA;color:#8A3F2A;border-color:#E8B5A1">The Reactor</span>
+      <span class="tpill" style="background:#EDE9F4;color:#5A5371;border-color:#C2BAD3">The Avoider</span>
+      <span class="tpill" style="background:#F4E8D0;color:#7A5825;border-color:#D9BC8C">The Performer</span>
+    </div>
+    <button class="btn-start" onclick="startQuiz()">Decode My Teen →</button>
+  </div>
+  <div class="how-row">
+    <div class="how-step"><div class="how-num">6</div><div class="how-label">questions about your teen's actual behavior</div></div>
+    <div class="how-step"><div class="how-num">2</div><div class="how-label">minutes to complete</div></div>
+    <div class="how-step"><div class="how-num">1</div><div class="how-label">free personalized Teen Decoder Report to your inbox</div></div>
+  </div>
+  <p class="intro-fine">Mickey Bell's personalized teen intelligence report · For parents of teens ages 14–17</p>`);
+}
+
+function startQuiz(){cq=0;ans=[];warned=false;scores={shut:0,react:0,avoid:0,perf:0};showQ()}
+
+function showQ(){
+  const q=Q[cq],pct=Math.round(((cq+1)/Q.length)*100),sel=ans[cq]!==undefined?ans[cq]:-1;
+  R(`<div class="prog-row">
+      <div class="prog-wrap"><div class="prog-fill" style="width:${pct}%"></div></div>
+      <div class="prog-label">${cq+1} / ${Q.length}</div>
+    </div>
+    <div class="qcard">
+      <div class="qnum">Question ${cq+1} of ${Q.length}</div>
+      <div class="qtext">${q.text}</div>
+      <div class="opts">${q.opts.map((o,i)=>`<button class="opt${sel===i?' sel':''}" onclick="pick(${i})"><div class="dot"></div><span>${o.l}</span></button>`).join('')}</div>
+    </div>
+    <div class="nav">
+      ${cq>0?`<button class="btn-back" onclick="goBack()">← Back</button>`:`<span></span>`}
+      <button class="btn-next" onclick="nextQ()" ${sel===-1?'disabled':''}>${cq===Q.length-1?'See My Results →':'Next →'}</button>
+    </div>`);
+}
+
+function pick(i){ans[cq]=i;showQ()}
+function goBack(){if(cq>0){cq--;showQ()}}
+function nextQ(){
+  const o=Q[cq].opts[ans[cq]];
+  Object.keys(o.t).forEach(k=>{scores[k]=(scores[k]||0)+o.t[k]});
+  if(o.w)warned=true;
+  if(cq<Q.length-1){cq++;showQ()}else{showLoading()}
+}
+function showLoading(){
+  R(`<div class="loading-wrap"><div class="spinner"></div><p class="loading-text">Building your teen's profile…</p></div>`);
+  setTimeout(showResults,2000);
+}
+
+/* ====================================================
+   RESULTS PAGE — with new direct-to-SamCart CTA
+   ==================================================== */
+function showResults(){
+  var total=Object.values(scores).reduce(function(a,b){return a+b},0);
+  var sorted=Object.entries(scores).sort(function(a,b){return b[1]-a[1]});
+  pkey=sorted[0][0];
+  var P=TYPES[pkey],I=INS[pkey];
+  var pcts={};
+  sorted.forEach(function(kv){pcts[kv[0]]=total>0?Math.round((kv[1]/total)*100):0});
+  var warnHtml=warned?'<div class="warn-box"><strong>Note:</strong> One answer flagged a concern. Trust your gut — consider speaking with a counselor in addition to these strategies.</div>':'';
+  var needPills=I.needs.map(function(n){return '<div class="need-pill">'+n+'</div>'}).join('');
+  var scoreCards=sorted.map(function(kv){
+    var k=kv[0];
+    return '<div class="score-card"><div class="score-top"><span class="score-name">'+TYPES[k].name+'</span><span class="score-pct" style="color:'+TYPES[k].scoreColor+'">'+pcts[k]+'%</span></div><div class="score-track"><div class="score-fill" style="width:'+pcts[k]+'%;background:linear-gradient(90deg,'+TYPES[k].gradA+','+TYPES[k].gradB+')"></div></div></div>';
+  }).join('');
+  var feelingsPreview=I.feelings.slice(0,2).map(function(f){return '<div class="list-item">'+f+'</div>'}).join('')+'<div class="list-item" style="color:var(--ink-mute);">+ more inside your full report…</div>';
+
+  /* Per-type "what's next" microcopy for the direct CTA */
+  var nextHooks={
+    shut:'Your teen shuts down because silence feels safer than saying the wrong thing. Now you need the exact words that make talking feel safe for them.',
+    react:'Your teen explodes because the pressure has nowhere to go. Now you need the words that de-escalate instead of ignite.',
+    avoid:'Your teen avoids because big conversations feel overwhelming. Now you need the low-pressure entry points that actually reach them.',
+    perf:'Your teen performs because being okay feels earned. Now you need the words that give them permission to drop the mask.'
+  };
+
+  R(
+    /* ===== Title ===== */
+    '<div class="results-eyebrow">Your Teen Decoder Report</div>'+
+    '<div class="results-title">Your teen has been <em>decoded.</em></div>'+
+    '<p class="results-sub">Here\'s your preview. Below, you can either jump straight to the next step — or get the full personalized report sent to your inbox.</p>'+
+
+    warnHtml+
+
+    /* ===== Primary Hero (their type) ===== */
+    '<div class="primary-hero" style="background:'+P.bg+';border-color:'+P.border+'">'+
+      '<div class="ph-eyebrow" style="color:'+P.scoreColor+'">Your Teen\'s Primary Type</div>'+
+      '<div class="ph-name" style="color:'+P.color+'">'+P.name+'</div>'+
+      '<div class="ph-hook" style="color:'+P.scoreColor+'">'+I.hook+'</div>'+
+      '<div class="ph-body" style="color:'+P.color+'">'+I.whoTheyAre+'</div>'+
+    '</div>'+
+
+    /* ===== Need Pills ===== */
+    '<div class="need-pill-row">'+needPills+'</div>'+
+
+    /* ===== Full Scorecard ===== */
+    '<div class="section-eyebrow">Full Scorecard</div>'+
+    scoreCards+
+
+    /* ===== Feelings Preview ===== */
+    '<div class="section-eyebrow">What They\'re Feeling Right Now</div>'+
+    '<div class="icard"><div class="icard-text">'+feelingsPreview+'</div></div>'+
+
+    /* ===== "What\'s in the full report" box ===== */
+    '<div class="beginning-box">'+
+      '<div class="beginning-header">'+
+        '<div class="beginning-eyebrow">Your Full Teen Decoder Report Includes</div>'+
+        '<div class="beginning-title">Everything you need to start <em>the conversation that matters.</em></div>'+
+      '</div>'+
+      '<div class="beginning-body">'+
+        '<div class="wi-row"><div class="wi-dot"></div><span>The lies your teen is carrying — and what they reveal</span></div>'+
+        '<div class="wi-row"><div class="wi-dot"></div><span>Exact words to say — and the ones to never say</span></div>'+
+        '<div class="wi-row"><div class="wi-dot"></div><span>What\'s really going on inside your teen right now</span></div>'+
+        '<div class="wi-row"><div class="wi-dot"></div><span>Your first action step from Mickey Bell\'s method</span></div>'+
+        '<div class="wi-row"><div class="wi-dot"></div><span>A printable PDF report personalized to '+P.name+'</span></div>'+
+      '</div>'+
+    '</div>'+
+
+    /* ===== ★ NEW: Direct-to-SamCart CTA on results page ===== */
+    '<div class="next-step">'+
+      '<div class="next-step-eyebrow">Now That You Know · Here\'s the Next Step</div>'+
+      '<div class="next-step-h">Plug what you just learned into a system that has your teen <em>actually talking</em> in 48 hours.</div>'+
+      '<div class="next-step-lede">'+nextHooks[pkey]+' The Decoder told you who they are — Mickey\'s 10-Minute Conversation Method shows you exactly what to say.</div>'+
+      '<div class="next-step-pills">'+
+        '<div class="next-step-pill"><strong>10</strong> Min/Day</div>'+
+        '<div class="next-step-pill"><strong>48</strong> Hours to Real Talk</div>'+
+        '<div class="next-step-pill"><strong>26</strong> Video Trainings</div>'+
+      '</div>'+
+      '<a href="'+SAMCART_URL_RESULTS+'" class="next-step-btn">See What Mickey Built Next <span class="arrow">→</span></a>'+
+      '<div class="next-step-sub">A real system, not just a report.</div>'+
+    '</div>'+
+
+    /* ===== "Or" divider ===== */
+    '<div class="or-divider"><span>Or</span></div>'+
+
+    /* ===== Email capture (secondary path) ===== */
+    '<div class="capture-card">'+
+      '<div class="cap-eyebrow">Prefer to Read First?</div>'+
+      '<div class="cap-title">Get the full report for <em>'+P.name+'</em> by email.</div>'+
+      '<div class="cap-sub">Free. Personalized. In your inbox in minutes.</div>'+
+      '<div class="field-wrap"><label class="field-label">First Name</label><input type="text" id="fname" placeholder="e.g. Sarah"/></div>'+
+      '<div class="field-wrap"><label class="field-label">Email Address</label><input type="email" id="femail" placeholder="you@email.com"/></div>'+
+      '<div id="ferr" class="err"></div>'+
+      '<button class="btn-submit" onclick="submitCapture()">Send Me My Free Teen Decoder Report →</button>'+
+      '<p class="privacy-note">No spam. Ever. Your information is safe and will never be shared.</p>'+
+    '</div>'+
+
+    '<button class="restart-btn" onclick="startQuiz()">← Start over with a different teen</button>'+
+    '<p class="footer-note">The Teen Decoder™ · Mickey Bell · The 10-Minute Conversation Method<br>This is not a clinical assessment and does not replace professional mental health support.</p>'
+  );
+}
+
+/* ====================================================
+   EMAIL SUBMIT (unchanged logic)
+   ==================================================== */
+function submitCapture(){
+  var name=document.getElementById('fname').value.trim();
+  var email=document.getElementById('femail').value.trim();
+  var btn=document.querySelector('.btn-submit');
+  var err=document.getElementById('ferr');
+  if(!name){err.textContent='Please enter your first name.';return}
+  if(!email||!email.includes('@')){err.textContent='Please enter a valid email address.';return}
+  err.textContent='';
+  btn.textContent='Sending…';
+  btn.disabled=true;
+  var TYPE_TAGS={shut:1991538,react:1991539,avoid:1991540,perf:1991541};
+  var tagId=pkey&&TYPE_TAGS[pkey]?TYPE_TAGS[pkey]:null;
+  fetch(WORKER_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({firstName:name,email:email,tagId:tagId})
+  }).then(function(r){return r.json();}).then(function(d){
+    console.log('Worker response:',JSON.stringify(d));
+    showConfirmation(name,email);
+  }).catch(function(e){
+    console.log('Worker error:',e);
+    showConfirmation(name,email);
+  });
+}
+
+/* ====================================================
+   CONFIRMATION SCREEN — for parents who chose email
+   ==================================================== */
+function showConfirmation(name,email){
+  var P=TYPES[pkey];
+  var nextMsg={
+    shut:'Your teen shuts down because silence feels safer than saying the wrong thing. Now you need the exact words that make talking feel safe for them.',
+    react:'Your teen explodes because the pressure has nowhere to go. Now you need the words that de-escalate instead of ignite.',
+    avoid:'Your teen avoids because big conversations feel overwhelming. Now you need the low-pressure entry points that actually reach them.',
+    perf:'Your teen performs because being okay feels earned. Now you need the words that give them permission to drop the mask.'
+  };
+
+  R(
+    '<div style="text-align:center;padding:1rem 0 .75rem">'+
+      '<div class="success-check"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6F7C5E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>'+
+      '<div style="font-size:10.5px;letter-spacing:.22em;color:var(--clay-deep);font-weight:700;text-transform:uppercase;margin-bottom:.5rem">You\'re In</div>'+
+      '<div class="display" style="font-size:26px;color:var(--ink);margin-bottom:.5rem;line-height:1.2">Your Teen Decoder Report is on <em style="color:var(--clay-deep);font-style:italic">its way</em>, '+name+'.</div>'+
+      '<p style="font-size:14px;color:var(--ink-soft);line-height:1.65;max-width:440px;margin:0 auto">Check your inbox in the next 5 minutes. The PDF is personalized to '+P.name+'.</p>'+
+    '</div>'+
+
+    '<div class="confirm-warn">'+
+      '<div class="confirm-warn-eyebrow">Important — Check This Now</div>'+
+      '<div class="confirm-warn-text"><strong>Don\'t see it?</strong> Check your <strong>Spam or Promotions folder</strong> and mark Mickey Bell as <strong>Not Spam</strong> so future messages come through.</div>'+
+    '</div>'+
+
+    '<div class="confirm-pivot">'+
+      '<div class="confirm-pivot-eyebrow">★ But Here\'s the Honest Truth</div>'+
+      '<div class="confirm-pivot-h">You now know <em>who</em> your teen is. That\'s only half the battle.</div>'+
+      '<div class="confirm-pull">"It\'s one thing to know who your teen is. It\'s another thing entirely to know what to do with that information at 9:47pm on a Tuesday when they slam the door in your face."</div>'+
+      '<p>'+nextMsg[pkey]+'</p>'+
+      '<p><strong>Knowing the diagnosis doesn\'t fix the conversation.</strong> Without a system, the report becomes a piece of paper you tucked in a drawer. The shutdowns come back. The silence comes back.</p>'+
+      '<p>I\'m not handing you a report and walking away. I built the next step for exactly this moment.</p>'+
+    '</div>'+
+
+    '<div class="upsell-wrap">'+
+      '<div class="upsell-flag">★ The Next Step ★</div>'+
+      '<div class="upsell-h">Plug what you just learned into a system that has your teen <em>actually talking</em> in 48 hours.</div>'+
+      '<div class="upsell-lede">10 minutes a day. No lectures. No meltdowns. No slammed doors. The Teen Decoder told you who they are — the 10-Minute Conversation Method shows you exactly what to say.</div>'+
+      '<div class="upsell-pills">'+
+        '<div class="upsell-pill"><strong>10</strong> Min/Day</div>'+
+        '<div class="upsell-pill"><strong>48</strong> Hours to Real Talk</div>'+
+        '<div class="upsell-pill"><strong>26</strong> Video Trainings</div>'+
+      '</div>'+
+      '<div class="upsell-urgency"><span class="pulse"></span>Don\'t Wait Until Tomorrow Night</div>'+
+      '<a href="'+SAMCART_URL_CONFIRM+'" class="upsell-cta">See What Mickey Built Next →</a>'+
+      '<div class="upsell-cta-sub">A real system, not a report. <strong>See exactly what\'s inside →</strong></div>'+
+    '</div>'+
+
+    '<div class="signature-quote">'+
+      '<div class="signature-quote-text">Your teen isn\'t shutting you out. They\'re protecting something they don\'t know how to explain yet. The Decoder told you who they are — the 10-Minute Conversation Method gives you the key.</div>'+
+      '<div class="signature-quote-attr">— Mickey Bell</div>'+
+    '</div>'+
+
+    '<button class="restart-btn" onclick="startQuiz()">← Start over with a different teen</button>'+
+    '<p class="footer-note">The Teen Decoder™ · Mickey Bell · The 10-Minute Conversation Method<br>This is not a clinical assessment and does not replace professional mental health support.</p>'
+  );
+}
+
+showIntro();
+</script>
+</body>
+</html>
